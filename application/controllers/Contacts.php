@@ -44,12 +44,13 @@ class Contacts extends MY_Controller {
             exit;
         }
 
-        $this->load->model('Contacts', 'contact', TRUE);
+        $this->load->model('Contact', 'contact', TRUE);
         $this->contact->setName($this->input->post("name"));
         $this->contact->setEmail($this->input->post("email"));
         $this->contact->setMobile($this->input->post("mobile"));
         $this->contact->setSubject($this->input->post("subject"));
         $this->contact->setMessage($this->input->post("message"));
+        $this->contact->setCsid(1);
         if (!$this->contact->insert()) {
             $this->output->set_output(json_encode(array(
                 "success" => FALSE,
@@ -58,13 +59,18 @@ class Contacts extends MY_Controller {
             exit;
         }
 
-        if (trim($this->input->post("email"))) {
+        if (trim($this->contact->getEmail())) {
             $this->load->library('email');
-            $this->email->set_newline("\r\n");
             $this->email->from('mountaintrekkersblr@gmail.com', 'Mountain Trekkers');
-            $this->email->to($this->input->post("email"));
-            $this->email->subject("Acknowledgement: " . $this->input->post("subject"));
-            $this->email->message($this->input->post("message"));
+            $this->email->to($this->contact->getEmail());
+            $this->email->subject("Acknowledgement: " . $this->contact->getSubject());
+            $this->email->message("Hi " . $this->contact->getName() . ",<br><br>"
+                    . "Thank you for your interest in our services. This is an acknowledgement for your request. Our representative will contact you shortly.<br><br>"
+                    . "Following are the details of your request for your reference,<br>"
+                    . "<b>Subject:</b> <i>" . $this->contact->getSubject() . "</i><br>"
+                    . "<b>Messsage:</b> <i>" . $this->contact->getMessage() . "</i><br><br>"
+                    . "Regards<br>"
+                    . "Mountain Trekkers");
             $this->email->send();
         }
 

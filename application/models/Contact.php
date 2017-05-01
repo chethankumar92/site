@@ -13,6 +13,7 @@ class Contact extends CI_Model {
     private $mobile;
     private $subject;
     private $message;
+    private $csid;
     private $created_auid;
     private $updated_auid;
     private $created_time;
@@ -45,6 +46,10 @@ class Contact extends CI_Model {
 
     function getMessage() {
         return $this->message;
+    }
+
+    function getCsid() {
+        return $this->csid;
     }
 
     function getCreated_auid() {
@@ -87,6 +92,10 @@ class Contact extends CI_Model {
         $this->message = $message;
     }
 
+    function setCsid($csid) {
+        $this->csid = $csid;
+    }
+
     function setCreated_auid($created_auid) {
         $this->created_auid = $created_auid;
     }
@@ -113,18 +122,19 @@ class Contact extends CI_Model {
     }
 
     public function insert() {
-        $result = $this->db->query("INSERT INTO " . self::TABLE . " SET name = ?, email = ?, mobile = ?, subject = ?, message = ?", array(
+        $result = $this->db->query("INSERT INTO " . self::TABLE . " (name, email, mobile, subject, message, csid) VALUES(?, ?, ?, ?, ?, ?)", array(
             $this->name,
             $this->email,
             $this->mobile,
             $this->subject,
-            $this->message
+            $this->message,
+            $this->csid
         ));
 
         if (!$result) {
             return FALSE;
         }
-        $this->cid=  $this->db->insert_id();
+        $this->cid = $this->db->insert_id();
         return TRUE;
     }
 
