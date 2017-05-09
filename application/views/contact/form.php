@@ -4,7 +4,7 @@
             <div class="col-md-offset-3 col-md-6">
                 <div class="section-header">
                     <h2 class="section-heading animated" data-animation="bounceInUp">Contact us</h2>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
+                    <p>Fill in the details and send it to us. We will revert back to you just after we receive the details in our inbox.</p>
                 </div>
             </div>
         </div>

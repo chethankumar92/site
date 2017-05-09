@@ -439,7 +439,7 @@ i.service-icon:hover {
 
 section.section {
     margin:0;
-    padding: 80px 0 60px 0;
+    padding: 100px 0 60px 0;
 }
 
 
@@ -455,6 +455,8 @@ section.section {
 .section-header h2.section-heading {
     text-transform: uppercase;
     font-weight: 700;
+    color: #417630;
+    margin-top: 20px;
 }
 
 /* ==========================

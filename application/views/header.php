@@ -13,8 +13,8 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
                 <li class="active"><a href="<?= site_url("home") ?>">Home</a></li>
-                <li><a href="<?= site_url("event") ?>">Upcoming Events</a></li>
-                <li><a href="<?= site_url("page/about_us") ?>">About Us</a></li>
+                <li><a href="<?= site_url("events") ?>">Upcoming Events</a></li>
+                <li><a href="<?= site_url("pages/about_us") ?>">About Us</a></li>
                 <li><a href="<?= site_url("contacts") ?>">Contact Us</a></li>
             </ul>
         </div>

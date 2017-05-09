@@ -11,135 +11,48 @@
         <div class="row">
             <nav id="filter" class="col-md-12 text-center">
                 <ul>
-                    <li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
-                    <li><a href="#"  class="btn-theme btn-small" data-filter=".webdesign" >April, 2017</a></li>
-                    <li><a href="#"  class="btn-theme btn-small" data-filter=".photography">May, 2017</a></li>
-                    <li ><a href="#" class="btn-theme btn-small" data-filter=".print">June, 2017</a></li>
+                    <?php if (isset($events) && is_array($events)): $classes = array(); ?>
+                        <li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
+                        <?php foreach ($events as $event): $class = date("M-Y", strtotime($event->getFrom_date())); ?>
+                            <?php if (!in_array($class, $classes)): $classes[] = $class; ?>
+                                <li><a href="#"  class="btn-theme btn-small" data-filter=".<?= $class ?>" ><?= date("M, Y", strtotime($event->getFrom_date())) ?></a></li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <div class="col-md-12">
                 <div class="row">
-                    <div class="portfolio-items isotopeWrapper clearfix" id="3">
-                        <article class="col-md-4 isotopeItem webdesign">
-                            <div class="portfolio-item">
-                                <div class="wow rotateInUpLeft" data-animation-delay="4.8s">
-                                    <img src="<?= img_url() ?>/portfolio/1.jpg" alt="welcome" />
-                                </div>
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 1</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/2.jpg" class="fancybox" rel="group1"><i class="fa fa-external-link fa-2x"></i></a>
-                                        <a href="<?= img_url() ?>/portfolio/2.jpg" class="fancybox" rel="group1"></i></a>
-                                        <a href="<?= img_url() ?>/portfolio/2.jpg" class="fancybox" rel="group1"></i></a>
-                                        <a href="<?= img_url() ?>/portfolio/2.jpg" class="fancybox" rel="group1"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                            <div class="portfolio-item">
-                                <div class="wow bounceIn">
-                                    <img src="<?= img_url() ?>/portfolio/2.jpg" alt="" />
-                                </div>
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 2</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/2.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                            <div class="portfolio-item">
-                                <div class="wow rotateInDownRight">
-                                    <img src="<?= img_url() ?>/portfolio/3.jpg" alt="" />
-                                </div>	
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 3</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/3.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem print">
-                            <div class="portfolio-item">
-                                <div class="wow rotateInUpLeft">
-                                    <img src="<?= img_url() ?>/portfolio/4.jpg" alt="" />
-                                </div>	
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 4</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/4.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                            <div class="portfolio-item">
-                                <div class="wow bounceIn">
-                                    <img src="<?= img_url() ?>/portfolio/5.jpg" alt="" />
-                                </div>
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 5</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/5.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem webdesign">
-                            <div class="portfolio-item">
-                                <div class="wow rotateInDownRight">
-                                    <img src="<?= img_url() ?>/portfolio/6.jpg" alt="" />
-                                </div>		
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 6</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/6.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem print">
-                            <div class="portfolio-item">
-                                <div class="wow rotateInUpLeft">
-                                    <img src="<?= img_url() ?>/portfolio/7.jpg" alt="" />
-                                </div>
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 7</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/7.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                            <div class="portfolio-item">
-                                <div class="wow bounceIn">
-                                    <img src="<?= img_url() ?>/portfolio/8.jpg" alt="" />
-                                </div>	
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 8</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/8.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem print">
-                            <div class="portfolio-item">
-                                <div class="wow rotateInDownRight">
-                                    <img src="<?= img_url() ?>/portfolio/9.jpg" alt="" />
-                                </div>
-                                <div class="portfolio-desc align-center">
-                                    <div class="folio-info">
-                                        <h5><a href="#">Project name 9</a></h5>
-                                        <a href="<?= img_url() ?>/portfolio/9.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                                    </div>										   
-                                </div>
-                            </div>
-                        </article>
+                    <div class="portfolio-items isotopeWrapper clearfix">
+                        <?php if (isset($events) && is_array($events)): ?>
+                            <?php foreach ($events as $ekey => $event): ?>
+                                <?php
+                                $images = $event->getImages();
+                                $image = is_array($images) ? reset($images) : NULL;
+                                ?>
+                                <article class="col-md-4 isotopeItem <?= date("M-Y", strtotime($event->getFrom_date())) ?>">
+                                    <div class="portfolio-item">
+                                        <div class="wow rotateInUpLeft" data-animation-delay="4.8s">
+                                            <img src="<?= is_object($image) ? $image->url : '' ?>" alt="<?= is_object($image) ? $image->name : '' ?>"/>
+                                        </div>
+                                        <div class="portfolio-desc align-center">
+                                            <div class="folio-info">
+                                                <h5>
+                                                    <a href="<?= site_url(Events::class . "/details/" . $event->getId() . "/" . str_replace(" ", "_", $event->getName())) ?>" class="btn btn-link"><?= $event->getName() ?></a>
+                                                </h5>
+                                                <?php foreach ($images as $ikey => $image): ?>
+                                                    <a href="<?= $image->url ?>" class="fancybox" rel="group-<?= $ekey ?>">
+                                                        <?php if (!$ikey): ?>
+                                                            <i class="fa fa-image fa-2x"></i>
+                                                        <?php endif; ?>
+                                                    </a>
+                                                <?php endforeach; ?>
+                                            </div>										   
+                                        </div>
+                                    </div>
+                                </article>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
