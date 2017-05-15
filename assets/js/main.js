@@ -56,6 +56,7 @@
     jQuery(".fancybox").fancybox({
         cyclic: true
     });
+
     if (Modernizr.mq("screen and (max-width:1024px)")) {
         jQuery("body").toggleClass("body");
     } else {

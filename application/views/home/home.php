@@ -48,3 +48,66 @@
         </div>
     </div>
 </section>
+<?= $upcoming_events ?>
+<?php if (isset($testimonials) && is_array($testimonials)): ?>
+    <section id="testimonials" class="row section appear clearfix">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Testimonials</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">Erdo lide, nora porodo filece, salvam esse se, quod concedimus ses haec dicturum fuisse</p>
+                </div>
+            </div>
+            <?php foreach ($testimonials as $key => $testimonial): ?>
+                <?php if ($key % 2 === 0): ?>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="profile">
+                                <div class="pic">
+                                    <img src="<?= asset_url() . "files/testimonial/small/" . $testimonial->getImage() ?>" alt="">
+                                </div>
+                                <h4><?= $testimonial->getName() ?></h4>
+                                <span><?= $testimonial->getDesignation() ?></span>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="quote">
+                                <b>
+                                    <img src="<?= img_url() ?>quote_sign_left.png" alt="">
+                                </b>
+                                <?= $testimonial->getContent() ?>
+                                <small>
+                                    <img src="<?= img_url() ?>quote_sign_right.png" alt="">
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="quote">
+                                <b>
+                                    <img src="<?= img_url() ?>quote_sign_left.png" alt="">
+                                </b> 
+                                <?= $testimonial->getContent() ?>
+                                <small>
+                                    <img src="<?= img_url() ?>quote_sign_right.png" alt="">
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="profile">
+                                <div class="pic">
+                                    <img src="<?= asset_url() . "files/testimonial/small/" . $testimonial->getImage() ?>" alt="">
+                                </div>
+                                <h4><?= $testimonial->getName() ?></h4>
+                                <span><?= $testimonial->getDesignation() ?></span>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </section>
+<?php endif; ?>

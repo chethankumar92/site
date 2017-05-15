@@ -11,9 +11,12 @@ class Events extends MY_Controller {
             "content" => "Upcoming Events"
         ));
 
+        $this->load->addPlugins("font-awesome-animation/font-awesome-animation", "css", 10);
+
         $this->load->model("Event", "event", TRUE);
         $this->load->template('event/upcoming', array(
-            "events" => Event::getEvents(1, date("Y-m-d"))
+            "events" => Event::getEvents(1, date("Y-m-d")),
+            "section" => TRUE
         ));
     }
 
