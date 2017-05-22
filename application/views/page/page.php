@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <div class="row text-center">
+        <div class="row">
             <?= html_entity_decode($page->getContent()) ?>
         </div>
     </div>
