@@ -1,9 +1,13 @@
 <section id="footer" class="section footer" style="bottom: 0px;">
     <div class="container">
         <div class="row text-center">
-            <div class="col-sm-12">
-                <a href="<?= site_url(Pages::class . "/terms_and_conditions") ?>">Terms and conditions</a>
-            </div>
+            <?php if (isset($pages) && is_array($pages)): $count = count($pages); ?>
+                <?php foreach ($pages as $page): ?>
+                    <div class="col-sm-<?= floor(12 / $count) ?>">
+                        <a href="<?= site_url(Pages::class . "/" . $page->getId() . "/" . str_replace(" ", "_", strtolower(trim($page->getTitle())))) ?>"><?= ucwords(strtolower(trim($page->getTitle()))) ?></a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
         <div class="row animated opacity mar-bot0" data-andown="fadeIn" data-animation="animation">
             <div class="col-sm-12 align-center">

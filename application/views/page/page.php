@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="row text-center">
-            <?= $page->getContent() ?>
+            <?= html_entity_decode($page->getContent()) ?>
         </div>
     </div>
 </section>

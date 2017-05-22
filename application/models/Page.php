@@ -25,6 +25,7 @@ class Page extends CI_Model {
      */
     public function __construct($id = NULL) {
         parent::__construct();
+        $this->load->database();
         if ($id) {
             $this->pid = $id;
             $this->loadById();
@@ -118,6 +119,14 @@ class Page extends CI_Model {
         return TRUE;
     }
 
+    public function populate($row) {
+        if (is_array($row) || is_object($row)) {
+            foreach ($row as $key => $value) {
+                $this->$key = $value;
+            }
+        }
+    }
+
     public function insert() {
         $result = $this->db->query("INSERT INTO " . self::TABLE . " (title, content, "
                 . "psid, created_auid) VALUES(?, ?, ?, ?)", array(
@@ -148,6 +157,29 @@ class Page extends CI_Model {
             return FALSE;
         }
         return TRUE;
+    }
+
+    public static function getPages($psid = array(1, 2)) {
+        $db = &get_instance()->db;
+
+        $query = "SELECT * FROM " . self::TABLE . " WHERE FIND_IN_SET(psid, ?) > 0";
+        $params = array(
+            is_array($psid) ? implode(",", $psid) : $psid
+        );
+
+        $result = $db->query($query, $params);
+        if (!$result || $result->num_rows() < 1) {
+            return FALSE;
+        }
+
+        $array = array();
+        $pages = $result->result();
+        foreach ($pages as $page) {
+            $_page = new self;
+            $_page->populate($page);
+            $array[] = $_page;
+        }
+        return $array;
     }
 
 }

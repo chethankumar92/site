@@ -67,8 +67,9 @@ class MY_Loader extends CI_Loader {
 
         $body = $this->view($template, $vars, TRUE);
 
-        $settings = $this->view('settings', array(), TRUE);
-        $footer = $this->view('footer', array(), TRUE);
+        $footer = $this->view('footer', array(
+            "pages" => $this->Page->getPages()
+                ), TRUE);
 
         return $this->view("main", array(
                     "styles" => $this->styles,
@@ -79,7 +80,6 @@ class MY_Loader extends CI_Loader {
                     "is_login" => $is_login,
                     "header" => $header,
                     "body" => $body,
-                    "settings" => $settings,
                     "footer" => $footer,
                     "extra" => $extra
                         ), $return);
@@ -101,10 +101,6 @@ class MY_Loader extends CI_Loader {
         return $this->description;
     }
 
-    /**
-     * 
-     * @return array
-     */
     function getMeta() {
         return $this->meta;
     }
@@ -129,10 +125,6 @@ class MY_Loader extends CI_Loader {
         $this->description = $description;
     }
 
-    /**
-     * 
-     * @param array $meta
-     */
     function setMeta(array $meta) {
         $this->meta = $meta;
     }
