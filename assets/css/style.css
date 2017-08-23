@@ -2020,3 +2020,10 @@ Media queries
     position: relative;
     top: 4px;
 }
+
+.list-header {
+    font-size: 15px;
+    padding: 10px 4px;
+    font-weight: bold;
+    color: #666;
+}
